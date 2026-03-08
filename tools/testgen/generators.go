@@ -2087,7 +2087,7 @@ var EthGetLogs = MethodTests{
 			},
 		},
 		{
-			Name:  "filter-error-blockHash-and-range",
+			Name:  "filter-error-invalid-blockHash-and-range",
 			About: "checks that an error is returned if `fromBlock`/`toBlock` are specified together with `blockHash`",
 			Run: func(ctx context.Context, t *T) error {
 				err := t.rpc.CallContext(ctx, nil, "eth_getLogs", map[string]string{
@@ -6168,6 +6168,7 @@ type callResult struct {
 	Logs       []*types.Log   `json:"logs"`
 	Transfers  []transfer     `json:"transfers,omitempty"`
 	GasUsed    hexutil.Uint64 `json:"gasUsed"`
+	MaxUsedGas hexutil.Uint64 `json:"maxUsedGas"`
 	Status     hexutil.Uint64 `json:"status"`
 	Error      errorResult    `json:"error,omitempty"`
 }
